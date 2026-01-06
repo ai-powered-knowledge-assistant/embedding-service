@@ -15,7 +15,11 @@ public class DocumentEventConsumer {
     )
     public void consume(DocumentUploadedEvent event) {
 
-        log.info("📄 Document received for embedding: {}", event.getDocumentId());
+        if (event.getDocumentId().equals("fail")) {
+            throw new RuntimeException("Simulated failure");
+        }
+
+        log.info("Processing document {}", event.getDocumentId());
 
         // Next step: text extraction → chunking → embeddings
     }
