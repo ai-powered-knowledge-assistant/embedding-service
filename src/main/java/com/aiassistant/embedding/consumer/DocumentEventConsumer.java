@@ -1,26 +1,24 @@
 package com.aiassistant.embedding.consumer;
 
 import com.aiassistant.embedding.dto.DocumentUploadedEvent;
+import com.aiassistant.embedding.service.EmbeddingPipeline;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
-@Slf4j
+@RequiredArgsConstructor
 @Component
+@Slf4j
 public class DocumentEventConsumer {
 
-    @KafkaListener(
-            topics = "document.uploaded",
-            containerFactory = "kafkaListenerContainerFactory"
-    )
+    private final EmbeddingPipeline embeddingPipeline;
+
+    @KafkaListener(topics = "document.uploaded")
     public void consume(DocumentUploadedEvent event) {
+        log.info("Kafka event received for document {}", event.getDocumentId());
 
-        if (event.getDocumentId().equals("fail")) {
-            throw new RuntimeException("Simulated failure");
-        }
-
-        log.info("Processing document {}", event.getDocumentId());
-
-        // Next step: text extraction → chunking → embeddings
+        embeddingPipeline.process(event);
     }
 }
+
