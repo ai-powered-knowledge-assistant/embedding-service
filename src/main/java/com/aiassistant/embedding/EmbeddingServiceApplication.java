@@ -1,10 +1,13 @@
 package com.aiassistant.embedding;
 
+import com.aiassistant.embedding.config.DocumentStorageProperties;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
 @SpringBootApplication
+@EnableConfigurationProperties(DocumentStorageProperties.class)
 public class EmbeddingServiceApplication {
 
 	public static void main(String[] args) {

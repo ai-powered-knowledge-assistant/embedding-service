@@ -15,6 +15,7 @@ public class DocumentUploadedEvent {
     private String fileName;
     private String contentType;
     private long fileSize;
+    private String storagePath;
     private Instant uploadedAt;
 
 }

@@ -1,6 +1,8 @@
 package com.aiassistant.embedding.service;
 
-public interface TextExtractor {
+import java.nio.file.Path;
 
-    String extractText(String documentId);
+public interface TextExtractor {
+    String extractText(Path filePath);
 }
+
