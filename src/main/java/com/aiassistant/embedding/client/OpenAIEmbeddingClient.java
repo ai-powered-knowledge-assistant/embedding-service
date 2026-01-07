@@ -16,7 +16,7 @@ import java.util.List;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class OpenAIEmbeddingClient implements EmbeddingClient {
+public class OpenAIEmbeddingClient {
 
     @Value("${openai.api-key}")
     private String apiKey;
@@ -29,7 +29,7 @@ public class OpenAIEmbeddingClient implements EmbeddingClient {
 
     private final RestTemplate restTemplate;
 
-    @Override
+
     public List<float[]> embed(List<String> chunks) {
 
         try {
